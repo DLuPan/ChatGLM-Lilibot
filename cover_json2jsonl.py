@@ -49,7 +49,7 @@ def main():
             # 处理json文件
             with open(file_path, 'w') as f:
                 for item in tqdm(value, desc="formatting.."):
-                    f.write(json.dumps(format_item(item)) + '\n',ensure_ascii=False)
+                    f.write(json.dumps(format_item(item),ensure_ascii=False) + '\n')
 
         pass
     else:
