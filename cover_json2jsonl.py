@@ -23,13 +23,13 @@ def main():
     """ 数据预处理 """
     if os.path.exists(args.data_path):
         json_files = [f for f in os.listdir(args.data_path) if os.path.isfile(os.path.join(args.data_path, f)) and f.endswith('.json')]
+        # 预处理相关相关数据
+        result_map={}
         for json_file in json_files:
             print(f"开始处理文件：{json_file}")
             json_path = os.path.join(args.data_path, json_file)
             with open(json_path, 'r',encoding='utf-8') as f:
                 json_data = json.load(f)
-            # 预处理相关相关数据
-            result_map={}
             for i in range(1,len(json_data)):
                 # 获取当前对象和前一个对象
                 current_obj = dict(json_data[i])
@@ -49,7 +49,7 @@ def main():
             # 处理json文件
             with open(file_path, 'w') as f:
                 for item in tqdm(value, desc="formatting.."):
-                    f.write(json.dumps(format_item(item)) + '\n')
+                    f.write(json.dumps(format_item(item)) + '\n',ensure_ascii=False)
 
         pass
     else:
