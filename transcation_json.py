@@ -55,3 +55,6 @@ def main():
         pass
     else:
         print(f"{args.data_path}文件夹不存在")
+
+if __name__ == "__main__":
+    main()
