@@ -6,7 +6,7 @@ import os
 from urllib import  parse
 def trancation(item:dict)->dict:
     try:
-        
+        print(f"翻译:{item['Dialogue']}")
         if item.get("trans"):
             print("已经翻译跳过")
             return item
@@ -28,7 +28,9 @@ def trancation(item:dict)->dict:
         }
 
         response = requests.request("GET", url, headers=headers, data=payload)
-        item['trans']=response.json()['sentences'][0]['trans']
+        trans=response.json()['sentences'][0]['trans']
+        item['trans']=trans
+        print(f"翻译:{item['Dialogue']},结果:{trans}")
     except:
         print(f"翻译异常:{item['Dialogue']}")
     return item
