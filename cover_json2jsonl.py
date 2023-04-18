@@ -41,13 +41,13 @@ def main():
                     result_map[current_obj['Character']]=[]
                 result_map[current_obj['Character']].append(current_obj)
         if not os.path.exists(args.save_path):
-                os.makedirs(args.save_path)
-        for key,value in result_map.items():
-            print(f"开始处理:{key}")
-            file_path= os.path.join(args.save_path, f"{key.replace(' ','').replace('/','_')}_alpaca_data.jsonl")
-            # 翻译所有数据
-            # 处理json文件
-            with open(file_path, 'w') as f:
+            os.makedirs(args.save_path)
+        print(f"开始处理:{key}")
+        file_path= os.path.join(args.save_path, "alpaca_data.jsonl")
+        # 翻译所有数据
+        # 处理json文件
+        with open(file_path, 'w') as f:
+            for key,value in result_map.items():
                 for item in tqdm(value, desc="formatting.."):
                     f.write(json.dumps(format_item(item),ensure_ascii=False) + '\n')
 
