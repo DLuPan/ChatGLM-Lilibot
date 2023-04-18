@@ -35,7 +35,7 @@ def trancation(item:dict)->dict:
     return item
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str, default="data/original")
+    parser.add_argument("--data_path", type=str, default="data/preprocess")
     args = parser.parse_args()
    
     if os.path.exists(args.data_path):
