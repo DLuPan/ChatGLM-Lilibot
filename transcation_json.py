@@ -6,7 +6,11 @@ import os
 from urllib import  parse
 def trancation(item:dict)->dict:
     try:
+        
         print(f"翻译:{item['Dialogue']}")
+        if item.get("trans"):
+            print("已经翻译跳过")
+            return item
         url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=input&tk=785991.785991&q={parse.quote(item['Dialogue'])}"
 
         payload={}
