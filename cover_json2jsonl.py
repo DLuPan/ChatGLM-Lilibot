@@ -42,7 +42,6 @@ def main():
                 result_map[current_obj['Character']].append(current_obj)
         if not os.path.exists(args.save_path):
             os.makedirs(args.save_path)
-        print(f"开始处理:{key}")
         file_path= os.path.join(args.save_path, "alpaca_data.jsonl")
         # 翻译所有数据
         # 处理json文件
