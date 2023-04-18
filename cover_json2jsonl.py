@@ -44,7 +44,7 @@ def main():
                 os.makedirs(args.save_path)
         for key,value in result_map.items():
             print(f"开始处理:{key}")
-            file_path= os.path.join(args.save_path, f"{key.replace(' ','')}_alpaca_data.jsonl")
+            file_path= os.path.join(args.save_path, f"{key.replace(' ','').replace('/','_')}_alpaca_data.jsonl")
             # 翻译所有数据
             # 处理json文件
             with open(file_path, 'w') as f:
