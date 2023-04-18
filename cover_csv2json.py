@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import csv
 
 
 
@@ -15,10 +16,12 @@ def main():
         for csv_file in csv_files:
             print(f"开始处理文件：{csv_file}")
             csv_path = os.path.join(args.data_path, csv_file)
-            with open(csv_path, 'r',encoding='utf-8') as f:
-                csv_data = f.readlines() # 读取csv文件内容
-            # 转换为json格式
-            json_data = [dict(zip(csv_data[0].strip().split(','), row.strip().split(','))) for row in csv_data[1:]]
+            fieldnames = ("Original","Character","Dialogue","Wordcount")
+            json_data=[]
+            with open(csv_path, newline='',encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile,fieldnames=fieldnames)
+                for row in reader:
+                    json_data.append(dict(row))
             # 保存为json文件
             if not os.path.exists(args.save_path):
                 os.makedirs(args.save_path)

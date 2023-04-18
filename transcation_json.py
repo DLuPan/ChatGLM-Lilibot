@@ -7,7 +7,6 @@ from urllib import  parse
 def trancation(item:dict)->dict:
     try:
         
-        print(f"翻译:{item['Dialogue']}")
         if item.get("trans"):
             print("已经翻译跳过")
             return item
