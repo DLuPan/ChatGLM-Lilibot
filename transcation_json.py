@@ -37,6 +37,7 @@ def trancation(item:dict)->dict:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_path", type=str, default="data/preprocess")
+    parser.add_argument("--save_path", type=str, default="data/trans")
     args = parser.parse_args()
    
     if os.path.exists(args.data_path):
@@ -49,7 +50,10 @@ def main():
             # 翻译所有数据
             json_data =[ trancation(item) for item in json_data[0:]]
             # 保存json文件
-            with open(json_path, 'w') as f:
+            if not os.path.exists(args.save_path):
+                os.makedirs(args.save_path)
+            trans_path = os.path.join(args.save_path, json_file)
+            with open(trans_path, 'w') as f:
                 json.dump(json_data, f)
             print("处理成功")
 
