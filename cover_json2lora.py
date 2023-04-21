@@ -45,9 +45,9 @@ def main():
         
         for key,value in result_map.items():
             """ 按对象名称存储 """
-            file_path= os.path.join(args.save_path, f"{key.replace('/','').replace(' ','')}_alpaca_data.json")
+            file_path= os.path.join(args.save_path, f"{key.replace('/','').replace(' ','').replace('?','')}_alpaca_data.json")
             with open(file_path, 'w') as f:
-                json.dumps([format_item(item) for item in value],ensure_ascii=False)
+                json.dump([format_item(item) for item in value],f,ensure_ascii=False)
 
         pass
     else:
